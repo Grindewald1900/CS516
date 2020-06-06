@@ -15,7 +15,7 @@ from pynput.mouse import Controller, Listener
 path = 'D:\Desktop\CS516\Assignment1\images'
 docs = ('\\t1.nii','\\t2.nii','\\tof.nii','\swi.nii','\\bold.nii')
 style = "PuRd_r"
-slice_id = 60
+slice_id = 10
 view = "axial"
 color = ('Accent', 'Accent_r', 'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'BuGn_r', 'BuPu', 'BuPu_r', 'CMRmap', 'CMRmap_r', 'Dark2', 'Dark2_r', 'GnBu', 'GnBu_r', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd', 'OrRd_r', 'Oranges', 'Oranges_r', 'PRGn', 'PRGn_r', 'Paired', 'Paired_r', 'Pastel1', 'Pastel1_r', 'Pastel2', 'Pastel2_r', 'PiYG', 'PiYG_r', 'PuBu', 'PuBuGn', 'PuBuGn_r', 'PuBu_r', 'PuOr', 'PuOr_r', 'PuRd', 'PuRd_r', 'Purples', 'Purples_r', 'RdBu', 'RdBu_r', 'RdGy', 'RdGy_r', 'RdPu', 'RdPu_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn', 'RdYlGn_r', 'Reds', 'Reds_r', 'Set1', 'Set1_r', 'Set2', 'Set2_r', 'Set3', 'Set3_r', 'Spectral', 'Spectral_r', 'Wistia', 'Wistia_r', 'YlGn', 'YlGnBu', 'YlGnBu_r', 'YlGn_r', 'YlOrBr', 'YlOrBr_r', 'YlOrRd', 'YlOrRd_r', 'afmhot', 'afmhot_r', 'autumn', 'autumn_r', 'binary', 'binary_r', 'bone', 'bone_r', 'brg', 'brg_r', 'bwr', 'bwr_r', 'cividis', 'cividis_r', 'cool', 'cool_r', 'coolwarm', 'coolwarm_r', 'copper', 'copper_r', 'cubehelix', 'flag', 'flag_r', 'gist_earth', 'gist_earth_r', 'gist_gray', 'gist_gray_r', 'gist_heat')
 size = (0,0,0)
@@ -60,7 +60,7 @@ def viewer3(brain,slice,view):
 def viewer4(brain,slice,view):
     """ Function to show all plots (part 2c)"""
     fig = plt.figure("Assignment1")
-    base = brain[:,slice,:]
+    base = brain[:,:,slice]
     base_fft = my_fft(base)
     plt.subplot(2,2,1)
     plt.imshow(base)
@@ -210,8 +210,6 @@ if __name__ == '__main__':
     mouse = Controller
     data = nib.load(path+docs[4])
     brain = data.get_fdata()
-    size = brain.shape
-    # viewer2(brain,slice_id,view)
     listener()
 
 
